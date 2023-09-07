@@ -1,0 +1,17 @@
+lista = [("CONSULTORIOS EXTERNOS DEL SANATORIO MODELO DE CASEROS - 50063712318749","https://redcap.msal.gov.ar/surveys/?s=zYg6xpnfkA"),
+("CEM CENTRO DE EMERGENCIAS MEDICAS BASE RAMALLO - 53066652303266","https://redcap.msal.gov.ar/surveys/?s=zz6pa4aDoM"),
+("SANATORIO GALENO S.C.E.I. - 10900842396040","https://redcap.msal.gov.ar/surveys/?s=ZZ9qppwI2G")]
+
+import qrcode
+for i in lista:
+    #codigo,link = linea.split(";")
+    qr = qrcode.QRCode(
+        version=2,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=1
+        ) # Establecer el tamaño del código QR
+    qr.add_data(i[1])
+    qr.make(fit=True)
+    img = qr.make_image()
+    img.save(i[0] + ".png")
